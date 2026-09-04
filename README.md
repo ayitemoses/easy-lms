@@ -30,7 +30,8 @@ L'interface définit quoi faire, pas comment.
 Ça permet de changer l'implémentation sans toucher au reste (et facilite les tests avec des mocks)
 
 6. ServiceImpl — la logique métier
-
+C'est ici que se passe toute la logique : vérifications, transformations, appels au repository. 
+Le Controller ne doit jamais parler directement au Repository.
 
 7. Exception
 
