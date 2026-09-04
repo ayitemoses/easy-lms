@@ -4,13 +4,14 @@
 
 
 
-1. Entity — la représentation de la table BDD
-   Elle représente la table dans le SGBDR choisi. Rien d'autre — pas de logique métier ici.
+1. Entity — la représentation de la table BDD (Class)
+Elle représente la table dans le SGBDR choisi. Rien d'autre — pas de logique métier ici.
 
 
+2. Repository — l'accès aux données (Interface)
 
-2. Repository — l'accès aux données
-
+Spring Data JPA génère automatiquement le CRUD (save, findById, findAll, deleteById...). 
+Tu ajoutes juste des méthodes custom si besoin, comme findByEmail.
 
 3. DTO — ce qu'on expose à l'extérieur
 
