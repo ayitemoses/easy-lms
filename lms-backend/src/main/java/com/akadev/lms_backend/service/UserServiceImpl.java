@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -28,12 +29,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long userId) {
+        // Il faut gérer l'exception en cas de recherche infructueuse
+        //User user = userRepository.findById(userId);
+
         return null;
     }
 
     @Override
     public List<UserDto> getAllUsers() {
-        return List.of();
+       List<User> users = userRepository.findAll();
+        //Comme la méthode reçoit exactement le même paramètre que celui fourni par le Stream, Java permet cette syntaxe raccourcie :
+        // remplace lambda by method reference
+       return users.stream().map(UserMapper::mapToUserDto).collect(Collectors.toList());
+
+       // Lambda Expression
+        //return users.stream().map((user) -> UserMapper.mapToUserDto(user)).collect(Collectors.toList());
+
     }
 
     @Override

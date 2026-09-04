@@ -33,11 +33,12 @@ L'interface définit quoi faire, pas comment.
 C'est ici que se passe toute la logique : vérifications, transformations, appels au repository. 
 Le Controller ne doit jamais parler directement au Repository.
 
-7. Exception
+7. Controller — l'exposition HTTP
+Le Controller ne fait que : recevoir la requête HTTP, appeler le service, renvoyer la réponse. 
+Aucune logique métier ici.
 
+8. Exception
 
-
-8. Controller — l'exposition HTTP
 
 
 
