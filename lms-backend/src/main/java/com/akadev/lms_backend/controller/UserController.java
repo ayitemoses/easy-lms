@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/users")
@@ -24,6 +26,14 @@ public class UserController {
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         UserDto savedUser = userService.createUser(userDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    }
+
+    // READ API
+
+    // ALL USERS
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
 }
