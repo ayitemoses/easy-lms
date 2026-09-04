@@ -2,6 +2,7 @@ package com.akadev.lms_backend.service;
 
 import com.akadev.lms_backend.dto.UserDto;
 import com.akadev.lms_backend.entity.User;
+import com.akadev.lms_backend.expection.ResourceNotFoundException;
 import com.akadev.lms_backend.mapper.UserMapper;
 import com.akadev.lms_backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserById(Long userId) {
         // Il faut gérer l'exception en cas de recherche infructueuse
-        //User user = userRepository.findById(userId);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with the given id: " + userId));
 
-        return null;
+        return UserMapper.mapToUserDto(user);
     }
 
     @Override
