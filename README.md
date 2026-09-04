@@ -13,8 +13,9 @@ Elle représente la table dans le SGBDR choisi. Rien d'autre — pas de logique 
 Spring Data JPA génère automatiquement le CRUD (save, findById, findAll, deleteById...). 
 Tu ajoutes juste des méthodes custom si besoin, comme findByEmail.
 
-3. DTO — ce qu'on expose à l'extérieur
-
+3. DTO — ce qu'on expose à l'extérieur (classe)
+Le DTO, c'est essentiellement le principe de séparation des responsabilités appliqué aux données : 
+l'entité gère la persistance, le DTO gère la communication.
 
 4. Mapper — conversion Entity ↔ DTO
 
