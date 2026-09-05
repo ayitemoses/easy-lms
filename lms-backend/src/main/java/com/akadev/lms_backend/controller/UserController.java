@@ -16,9 +16,7 @@ public class UserController {
 
     private final UserService userService;
 
-
     // CREATE API
-
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         UserDto savedUser = userService.createUser(userDto);
@@ -34,12 +32,25 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    // ONE USER BY IF
-
+    // ONE USER BY ID
     @GetMapping("{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
          UserDto userDto = userService.getUserById(userId);
          return ResponseEntity.ok(userDto);
     }
 
+    // UPDATE API
+    @PutMapping("{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable("id") Long userId,
+                                              @RequestBody UserDto updatedUser) {
+       UserDto userDto = userService.updateUser(userId, updatedUser);
+       return ResponseEntity.ok(userDto);
+    }
+
+    // DELETE API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.ok("User deleted successfully!");
+    }
 }

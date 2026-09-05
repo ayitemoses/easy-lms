@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
 
+    // Create the circular references
+    
+    //private final UserService userService;
     private UserRepository userRepository;
 
     @Override
@@ -50,12 +53,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(Long userId, UserDto userDto) {
-        return null;
+    public UserDto updateUser(Long userId, UserDto updatedUser) {
+
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User does not exist with the given id: " + userId));
+
+        user.setFirstname(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setEmail(updatedUser.getEmail());
+        user.setRole(updatedUser.getRole());
+
+        User updatedUserObj = userRepository.save(user);
+        return UserMapper.mapToUserDto(updatedUserObj);
     }
 
     @Override
     public void deleteUser(Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User does not exist with the given id: " + userId));
+
+        userRepository.deleteById(userId);
 
     }
 }
